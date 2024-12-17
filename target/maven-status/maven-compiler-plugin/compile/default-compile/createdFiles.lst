@@ -1,0 +1,10 @@
+com\example\SRTF.class
+com\example\ServerApp.class
+com\example\Process.class
+com\example\Main.class
+com\example\PriorityScheduling.class
+com\example\RoundRobin.class
+com\example\ShortestNextScheduling.class
+com\example\SJF.class
+com\example\FCFS.class
+com\example\SchedulingServlet.class

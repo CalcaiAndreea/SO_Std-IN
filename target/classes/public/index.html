@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Planificare Procese</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Planificare Procese</h1>
+        <form action="/schedule" method="post">
+            <div class="form-row">
+                <label for="n">Număr procese:</label>
+                <input type="number" name="n" id="n" min="1" value="3">
+            </div>
+            
+            <div id="processes" class="processes-grid"></div>
+            
+            <div class="form-row">
+                <label for="algorithm">Alege Algoritmul:</label>
+                <select name="algorithm" id="algorithm">
+                    <option value="FCFS">FCFS (Primul venit - primul servit)</option>
+                    <option value="SJF">SJF (Cel mai scurt job primul)</option>
+                    <option value="SRTF">SRTF (Cel mai scurt timp de realizare rămas)</option>
+                    <option value="RoundRobin">Round Robin</option>
+                    <option value="Priority">Planificare Prioritară</option>
+                    <option value="ShortestNext">Cel mai scurt proces este următorul</option>
+                </select>
+            </div>
+            
+            <div class="form-row" id="quantumField" style="display:none;">
+                <label for="quantum">Quantum (pentru SRTF, RoundRobin, ShortestNext):</label>
+                <input type="text" name="quantum" id="quantum">
+            </div>
+            
+            <div class="form-row">
+                <button type="submit">Execută</button>
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        function generateProcesses() {
+            const n = parseInt(document.getElementById('n').value, 10);
+            const container = document.getElementById('processes');
+            const algo = document.getElementById('algorithm').value;
+            container.innerHTML = '';
+            for (let i = 0; i < n; i++) {
+                const div = document.createElement('div');
+                div.className = 'process-input';
+                let html = `
+                    <label>ID Proces ${i+1}:</label>
+                    <input type="text" name="pid[]" required>
+                    <label>Durată:</label>
+                    <input type="text" name="duration[]" required>
+                `;
+                if (algo === 'Priority') {
+                    html += `
+                        <label>Prioritate:</label>
+                        <input type="number" name="priority[]" required>
+                    `;
+                }
+                div.innerHTML = html;
+                container.appendChild(div);
+            }
+        }
+
+        function handleAlgorithmChange() {
+            const algo = document.getElementById('algorithm').value;
+            // Arătăm câmpul quantum doar pentru SRTF, RoundRobin și ShortestNext
+            const quantumField = document.getElementById('quantumField');
+            if (algo === 'SRTF' || algo === 'RoundRobin' || algo === 'ShortestNext') {
+                quantumField.style.display = 'flex';
+            } else {
+                quantumField.style.display = 'none';
+            }
+
+            // Regenerăm câmpurile pentru procese (pentru a include/exclude prioritatea)
+            generateProcesses();
+        }
+
+        document.getElementById('n').addEventListener('change', generateProcesses);
+        document.getElementById('algorithm').addEventListener('change', handleAlgorithmChange);
+
+        // Inițializare
+        generateProcesses();
+    </script>
+</body>
+</html>

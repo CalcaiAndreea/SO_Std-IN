@@ -1,0 +1,181 @@
+/* Reset de bază pentru a elimina marginile și padding-ul implicite */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Stilizare pentru corpul paginii */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Container principal */
+.container {
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Titlul paginii */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #800000; /* Bordo */
+    font-size: 2em;
+}
+
+/* Stilizare pentru formulare */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Stilizare pentru rândurile formularului */
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form-row label {
+    flex: 1;
+    font-weight: bold;
+    color: #800000; /* Bordo */
+    margin-right: 10px;
+}
+
+.form-row input[type="text"],
+.form-row input[type="number"],
+.form-row select {
+    flex: 2;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+    font-size: 1em;
+}
+
+.form-row input[type="text"]:focus,
+.form-row input[type="number"]:focus,
+.form-row select:focus {
+    border-color: #800000; /* Bordo */
+    outline: none;
+}
+
+/* Stilizare pentru butoane */
+button {
+    padding: 12px;
+    background-color: #800000; /* Bordo */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #a00000; /* Bordo închis */
+}
+
+/* Stilizare pentru div-urile de input ale proceselor */
+.processes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.process-input {
+    background-color: #fafafa;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s;
+}
+
+.process-input label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #800000; /* Bordo */
+}
+
+.process-input input {
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+.process-input input:focus {
+    border-color: #800000; /* Bordo */
+    outline: none;
+}
+
+.process-input:last-child input {
+    margin-bottom: 0;
+}
+
+/* Stilizare pentru rezultatele afișate */
+pre {
+    background-color: #fff3f3;
+    border-left: 5px solid #800000; /* Bordo */
+    padding: 20px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    white-space: pre-wrap;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Link-uri */
+a {
+    color: #800000; /* Bordo */
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 800px) {
+    .processes-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .form-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-row label {
+        margin-bottom: 5px;
+    }
+
+    .processes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    button {
+        font-size: 0.9em;
+    }
+}
